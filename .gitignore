@@ -1,0 +1,5 @@
+# User uploaded files
+wp-content/uploads/
+
+# Archives
+*.tar.gz*

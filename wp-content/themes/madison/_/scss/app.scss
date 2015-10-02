@@ -1,0 +1,725 @@
+@import "settings";
+@import "foundation";
+@import "icomoon";
+
+/* -------------------------------
+:: VARIABLES
+-------------------------------- */
+
+
+$sm_padding: rem-calc(15);
+$med_padding: rem-calc(30);
+$lrg_padding: rem-calc(60);
+$xlrg_padding: rem-calc(100);
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($box-shadow) {
+  -webkit-box-shadow: $box-shadow;
+     -moz-box-shadow: $box-shadow;
+          box-shadow: $box-shadow;
+}
+
+@mixin transitions($transition) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+      -ms-transition: $transition;
+          transition: $transition;
+}
+
+@mixin transform($transformation){
+  -webkit-transform: $transformation; 
+      -ms-transform: $transformation;  
+          transform: $transformation;
+}
+
+@mixin background-size($cover){
+  -webkit-background-size: $cover;
+  -moz-background-size: $cover;
+  background-size: $cover;
+}
+
+/* -------------------------------
+:: IMPORTS
+-------------------------------- */
+
+@import "responsivenav";
+@import "fancybox";
+@import "soundcloud";
+
+
+/* -------------------------------
+:: GLOBAL
+-------------------------------- */
+
+.mls{
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+nav, .social{
+  ul{
+    list-style: none;
+    margin: 0;
+  }
+}
+
+
+h2,h3,h4,h5{
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+}
+
+.row.xlrg{
+  max-width: rem-calc(1400);
+}
+
+/* -------------------------------
+:: FORMS
+-------------------------------- */
+
+input[type="text"], input[type="email"], textarea{
+  @include box-shadow(none);
+  border: none;
+  height: rem-calc(50);
+  padding: $sm_padding;
+  &:focus{
+    @include box-shadow(none);  
+  }
+}
+
+/* -------------------------------
+:: BUTTONS
+-------------------------------- */
+
+a.button, button.button{
+  background: $olive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 10;
+   &:after{
+    display: block !important;
+    content: '';
+    position: absolute;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    background: darken($olive, 20%);
+    z-index: -1;
+   }
+   &:hover, &:active{
+    background: $olive;
+    &:after{
+      height: 100%;
+    }
+   }
+}
+
+/* -------------------------------
+:: HEADER
+-------------------------------- */
+
+header{
+  position: relative;
+  z-index: 2000;
+  padding: $med_padding $sm_padding;
+  @include box-shadow(0px 10px 20px -10px $opaque);
+}
+
+/* -------------------------------
+:: FOOTER
+-------------------------------- */
+
+footer{
+  background: $dk_gry;
+  padding: $med_padding 0;
+  .line{
+    margin-top: $sm_padding;
+    height: 3px;
+    background: url('../img/pink-dot.png') repeat-x;
+    background-size: 12px 3px;   
+  }
+  .social{
+    ul{
+      text-align: center;
+      li{
+        display: inline-block;
+        margin: 0 $sm_padding;
+        a{
+          font-size: 1.5rem;
+          span{
+            color: $white;
+          }
+          span.icon-facebook{
+            &:hover, &:focus{
+              color: $facebook;
+            }
+          }
+          span.icon-twitter{
+            &:hover, &:focus{
+              color: $twitter
+            }
+          }
+          span.icon-instagram{
+            &:hover, &:focus{
+              color: $instagram;
+            }
+          }
+          span.icon-youtube{
+            &:hover, &:focus{
+              color: $youtube;
+            }
+          }
+          span.icon-pinterest{
+            &:hover, &:focus{
+              color: $pinterest;
+            }
+          }
+          span.icon-google-plus{
+            &:hover, &:focus{
+              color: $google_plus;
+            }
+          }
+        }
+      }
+    }
+  }
+  .colophon{
+    text-align: center;
+    padding: $sm_padding 0 0;
+    p{
+      color: $med_gry;
+      font-family: $montserrat;
+      text-transform: uppercase;
+      font-size: rem-calc(12);
+      letter-spacing: 2px;
+      margin: 0;
+    }
+  }
+}
+
+/* -------------------------------
+:: COOL MENU SHIT
+-------------------------------- */
+
+body.footer-safe{
+
+  nav#mobile-menu{
+    display: none;
+  }
+
+  section#footer-nav{
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  footer{
+    margin-top: rem-calc(55);
+  }
+}
+
+body.footer-safe.scrolled-one{
+  section#footer-nav{
+    position: relative;
+  } 
+  footer{
+    margin-top: 0;
+  }
+}
+
+section#footer-nav{
+  display: none;
+  z-index: 1000;
+  background: $white;
+  @include box-shadow(0px -10px 20px -10px $opaque);
+  nav{
+    ul{
+      text-align: center;
+      li{
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        a{
+          @include transitions(all 150ms ease-in-out);
+          position: relative;
+          display: block;
+          font-family: $montserrat;
+          text-transform: uppercase;
+          color: $dk_gry;
+          padding: $sm_padding;
+          margin: 0;
+          &:after{
+              @include transitions(all 150ms ease-in-out);
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              margin-left: rem-calc(-10);
+              content: "";
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 10px 10px 10px;
+              border-color: transparent transparent transparent transparent;
+            }
+          &:hover, &:focus{  
+            &:after{
+              border-color: transparent transparent $dk_gry transparent;
+            }
+          }
+        }
+      }
+      li.current-menu-item{
+        a{
+          background: $olive;
+          &:after{
+            border-color: transparent transparent $dk_gry transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------
+:: PAGES
+-------------------------------- */
+
+section.main{
+  background-position: top center;
+  @include background-size(cover);
+}
+section.content-area{
+  padding: $med_padding 0;
+}
+
+/* -------------------------------
+:: HOME PAGE
+------------------------------- */
+.home-nav-collapse{
+  z-index: 1000;
+  @include box-shadow(0px 10px 20px -10px $opaque);
+  ul, li, a{
+    line-height: 1;
+  }
+  ul, li{
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  ul{
+    margin-bottom: -2px;
+  }
+}
+body.home{
+  .home-wrap{
+    position: relative;
+  }
+  .content-area{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .social{
+    ul{
+      margin-top: $sm_padding;
+      text-align: left;
+      margin-left: rem-calc(-8);
+      li{
+        display: inline-block;
+        margin-right: rem-calc(49);
+        a{
+          font-size: 1.9rem;
+           span{
+            color: $lt_blue;
+          }
+          span.icon-facebook{
+            &:hover, &:focus{
+              color: $facebook;
+            }
+          }
+          span.icon-twitter{
+            &:hover, &:focus{
+              color: $twitter
+            }
+          }
+          span.icon-instagram{
+            &:hover, &:focus{
+              color: $instagram;
+            }
+          }
+          span.icon-youtube{
+            &:hover, &:focus{
+              color: $youtube;
+            }
+          }
+          span.icon-pinterest{
+            &:hover, &:focus{
+              color: $pinterest;
+            }
+          }
+          span.icon-google-plus{
+            &:hover, &:focus{
+              color: $google_plus;
+            }
+          }
+        }
+      }
+    }
+  }
+  #home-logo{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* -------------------------------
+:: MUSIC PAGE
+-------------------------------- */
+
+body.music{
+  .main{
+    padding-top: rem-calc(700);
+    h2{
+      color: $white;
+      text-align: center;
+      margin: $sm_padding 0;
+    }
+  }
+}
+
+/* -------------------------------
+:: ABOUT PAGE
+-------------------------------- */
+
+body.about{
+  .content-area{
+    img{
+      margin: $sm_padding 0;
+    }
+  }
+}
+h2#about-title{
+  font-family: $lato;
+  font-weight: 900;
+  font-size: rem-calc(18);
+  text-transform: none;
+  color: $olive;
+  .char1{
+    color: $pink;
+    font-size: rem-calc(60);
+  }
+}
+
+
+/* -------------------------------
+:: MEDIA PAGE
+-------------------------------- */
+
+.videos{
+  background: $olive;
+  .row.video{
+    margin-bottom: $med_padding;
+    a{
+      position: relative;
+      display: block;
+      @include background-size(cover);
+      background-position: top center;
+      height: rem-calc(300);
+      width: 100%;
+      span.icon-play{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: rem-calc(-30) 0 0 rem-calc(-30);
+        font-size: 3.0rem;
+        color: $white;
+      }
+    }
+    h2{
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+.instagram{
+  .icon-instagram{
+    display: block;
+    color: $olive;
+    font-size: 3.0rem;
+    margin: rem-calc(35) 0 0;
+  }
+}
+.instagram-wrapper{
+  overflow: hidden;
+  height: rem-calc(127);
+}
+div#instafeed{
+  height: 9999px;
+  a{
+    position: relative;
+    display: block;
+    float: left;
+    width: rem-calc(127);
+    height: rem-calc(127);
+    margin-right: rem-calc(24);
+    .overlay{
+      opacity: 0;
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $opaque;
+      @include transitions(opacity 150ms ease-in-out);
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+    &:hover{
+      .overlay{
+        opacity: 1;
+      }
+    }
+    img{
+      width: rem-calc(127);
+      height: rem-calc(127);
+    }
+  }
+}
+
+.gallery{
+  background: $pink;
+  a.image{
+    margin-bottom: $med_padding;
+    img{
+      width: 100%;
+    }
+  }
+}
+
+/* -------------------------------
+:: TOUR PAGE
+-------------------------------- */
+body.tour{
+  .content-area{
+    padding: $lrg_padding 0;
+  }
+}
+#tour-dates{
+  .event{
+    padding: $sm_padding 0;
+  }
+  .date{
+    display: inline-block;
+    background: $olive;
+    width: rem-calc(80);
+    height: rem-calc(80);
+    padding: $sm_padding 0 0;
+    @include border-radius(rem-calc(40));
+    h2,h4{
+      margin: 0;
+      color: $white;
+      line-height: 1;
+      text-align: center;
+    }
+    h4{
+      font-weight: 400;
+    }
+  }
+  h3.address{
+    margin: 0;
+    line-height: 1;
+    margin: $sm_padding 0 0;
+  }
+  .venue-name{
+    font-family: $montserrat;
+    color: $turquoise;
+    font-size: rem-calc(13);
+  }
+  a.ticket-link{
+    color: $pink;
+    font-size: 3.0rem;
+  }
+}
+
+
+/* -------------------------------
+:: CONTACT PAGE
+-------------------------------- */
+
+.contact-form{
+  padding: $med_padding 0;
+  background-position: top center;
+  @include background-size(cover);
+  div.wpcf7-response-output{
+    background: $dk_pink;
+    color: $white;
+    border: none !important;
+    margin: 0;
+  }
+  span.wpcf7-not-valid-tip{
+    color: $dk_pink;
+  }
+  a.button{
+    background: none;
+    border: 4px solid $olive;
+  }
+}
+
+.contact-info{
+  background: $dk_pink;
+  padding: $med_padding 0;
+  h5,p,a{
+    color: $white;
+    margin: 0;
+  }
+  a{
+    &:hover{
+      color: darken($dk_pink,40%);
+      @include transitions(all 150ms ease-in-out);
+    }
+  }
+  div.line{
+    height: 1px;
+    margin: $sm_padding;
+    background: $pink;
+    @include transform(rotate(-60deg));
+    &:first-child{
+      position: relative;
+      left: rem-calc(-28);
+      bottom: rem-calc(-11);
+    }
+     &:nth-child(2){
+      position: relative;
+      left: rem-calc(-14);
+      bottom: rem-calc(4);
+    }
+    &:last-child{
+      position: relative;
+      left: rem-calc(0);
+      bottom: rem-calc(20);
+    }
+  }
+}
+
+
+@media only screen and (max-width:1024px){
+  
+  /* -------------------------------
+  :: HOME PAGE
+  -------------------------------- */
+
+  body.home{
+    #home-logo{
+      position: relative;
+      top: 0;
+    }
+  }
+  /* -------------------------------
+  :: TOUR PAGE
+  -------------------------------- */
+  body.tour{
+    section.main{
+      background-position: 75% 0%;
+    }
+  }
+}
+
+@media only screen and (max-width:640px){
+
+  .main{
+    .overlay{
+      background-color: $opaque;
+    }
+  }
+
+  /* -------------------------------
+  :: HOME PAGE
+  -------------------------------- */
+  .home-nav-collapse{
+    @include box-shadow(none);
+    border-bottom: 1px solid #4c4348;
+
+  }
+  body.home{
+    section.content-area{
+      position: relative;
+      @include box-shadow(0px 10px 20px -10px $opaque);
+    }
+  }
+
+  /* -------------------------------
+  :: MUSIC PAGE
+  -------------------------------- */
+
+  body.music{
+    .main{
+      padding-top: rem-calc(400);
+    }
+  }
+
+   /* -------------------------------
+  :: ABOUT PAGE
+  -------------------------------- */
+
+  body.about{
+    .gradient{
+      background: url('../img/white-gradient.png') repeat-x;
+    }
+    h2#about-title{
+      margin-bottom: rem-calc(100);
+    }
+  }
+
+  /* -------------------------------
+  :: MEDIA PAGE
+  -------------------------------- */
+
+  .videos{
+    .row.video{
+      a{   
+        height: rem-calc(150);
+      }
+    }
+  }
+
+  /* -------------------------------
+  :: TOUR PAGE
+  -------------------------------- */
+
+  #tour-dates{
+    .date{
+      height: rem-calc(70);
+      width: rem-calc(70);
+    }
+    h3.address{
+      margin: 0;
+      color: $white;
+    }
+  }
+}
+
+
+
+
+
+

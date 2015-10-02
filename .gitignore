@@ -3,3 +3,6 @@ wp-content/uploads/
 
 # Archives
 *.tar.gz*
+
+# bower components
+bower_components/*
